@@ -1,0 +1,159 @@
+from datetime import *
+from math import *
+class account :
+    print("WELCOME TO AFRI BANK.\n AFRI BANK OF NIGERIA!!: GIVING THE WORLD A CHANCE FOR FINANCIAL AND INFRA-STRUCTURAL ADVANCEMENT\n")
+    def __init__(self):
+        print("Account Registration\n")
+        self.account_number=int(input("what is the account number ?"))
+        self.account_balance=0
+        self.account_holders_names=input("what is the account name ?")
+        self.account_holders_names=self.account_holders_names.upper()
+        self.password=input("key in your password")
+
+    def deposit(self):
+        print('DEPOSIT SECTION\n')
+        account_number=0
+        a=0
+        while self.account_number!=account_number:
+            try:
+                account_number=int(input("what is the account number ?"))
+            except ValueError as err:
+                print(err)
+            if  account_number!=self.account_number:
+                print("THE ACCOUNT NUMBER YOU  KEYED IN WAS WRONG !!!\nWE DO NOT HAVE SUCH ACCOUNT NUMBER IN OUR DATABASE\n")
+                a+=1
+                if a==3:
+                    print("restart the process")
+                    print("THE ACCOUNT NUMBER YOU  KEYED IN WAS WRONG !!!\nWE DO NOT HAVE SUCH ACCOUNT NUMBER IN OUR DATABASE\n")
+                    return
+            elif account_number==self.account_number:
+                print(f"THE ACCOUNT  NAME OF THIS ACCOUNT NUMBER IS: {self.account_holders_names}\n")
+                depositors_name=input("what is the depositors name ?")
+                depositors_name= depositors_name.upper()
+                print(f"HELLO {depositors_name}\n You are most welcomed to AFRI BANK NIGERIA PLC.\nPlease give us your remaining details as prompted")
+                deposit=0
+                while type(deposit)!=float:
+                    try:
+                        deposit=float(input("how much do you deposit ?"))
+                    except ValueError as err:
+                        print(err)
+                self.account_balance=deposit
+                year_of_deposit=0
+                while year_of_deposit not in range(1000,5001):
+                    try:
+                        year_of_deposit=int(input("what is the year of your deposit ?"))
+                    except ValueError as err:
+                        print(err)
+                month_of_deposit=0
+                while month_of_deposit not in range(1,13):
+                    try:
+                        month_of_deposit=int(input("what is the month of your deposit ?"))
+                    except ValueError as err:
+                        print(err)
+                    except TypeError as err:
+                        print(err)
+                    if month_of_deposit >12:
+                        print(" the inputed number is more than the max number of months in a year")
+                day_of_deposit=0
+                while day_of_deposit not in range(1,32):
+                    try:
+                        day_of_deposit=int(input("what is the day of the month of your deposit ?"))
+                    except ValueError as err:
+                        print(err)
+                    except TypeError as err:
+                        print(err)
+                    if day_of_deposit >31:
+                        print(" the inputed number is more than the max number of days in a month")
+                    print(f"HELLO AFRI BANK CUSTOMER:{ depositors_name}\nTHE TRANSACTION WAS SUCCESSFUL\nYOUR ACCOUNT BALANCE IS {self.account_balance} #. date of transaction: {year_of_deposit}-{month_of_deposit}-{day_of_deposit}\n")
+                    return (self.account_balance,day_of_deposit,month_of_deposit,year_of_deposit)
+    def withdraw(self):
+        print("WITRHDRAWAL SECTION")
+        account_number=0
+        a=0
+        while self.account_number!=account_number:
+            try:
+                account_number=int(input("what is the account number ?"))
+            except ValueError as err:
+                print(err)
+            if  account_number!=self.account_number:
+                print("THE ACCOUNT NUMBER YOU  KEYED IN WAS WRONG !!!\nWE DO NOT HAVE SUCH ACCOUNT NUMBER IN OUR DATABASE")
+                a+=1
+                if a==3:
+                    print("restart the process")
+                    print("THE ACCOUNT NUMBER YOU  KEYED IN WAS WRONG !!!\nWE DO NOT HAVE SUCH ACCOUNT NUMBER IN OUR DATABASE")
+                    return
+            elif account_number==self.account_number:
+                print(f"HELLO {self.account_holders_names}\nyour account balance is {self.account_balance} #\n")
+        year_of_withdrawal=0
+        while year_of_withdrawal not in range(1000,5001):
+            try:
+                year_of_withdrawal=int(input("what is the year of your withdrawal ?"))
+            except ValueError as err:
+                print(err)
+        month_of_withdrawal=0
+        while month_of_withdrawal not in range(1,13):
+            try:
+                month_of_withdrawal=int(input("what is the month of your withdrawal ?"))
+            except ValueError as err:
+                print(err)
+            if month_of_withdrawal >12:
+                print(" the inputed number is more than the max number of months in a year")
+        day_of_withdrawal=0
+        while day_of_withdrawal not in range(1,32):
+            try:
+                day_of_withdrawal=int(input("what is the day of the  month of your withdrawal ?"))
+            except ValueError as err:
+                print(err)
+            if day_of_withdrawal>31:
+                print(" the inputed number is more than the max number of days in a month")
+        withdrawn_amount=0
+        while type(withdrawn_amount)!=float:
+            try:
+                withdrawn_amount=float(input("KEY IN THE AMOUNT YOU WANT TO WITHDRAW !"))
+            except ValueError as err:
+                    print(err)
+            if withdrawn_amount>self.account_balance:
+                print(f"ERROR INPUT: PLEASE ENSURE THAT AMOUNT YOU WANT TO WITHDRAW IS BELOW THE AMOUNT IN YOUR ACCOUNT BALANCE BY 1035#. THIS IS YOUR ACCOUNT BALANCE: {self.account_balance}#")
+                print(f"restart the process")
+                break
+            elif self.account_balance>=withdrawn_amount :
+                self.account_balance=self.account_balance-withdrawn_amount
+                if self.account_balance>1035:
+                    password=0
+                    a=0
+                    while password!=self.password:
+                        password=input("key in your password")
+                        if  password!=self.password:
+                                print("WRONG PASSWORD!!!")
+                                a+=1
+                                if a==3:
+                                    print("restart the process")
+                                    return
+                        elif self.password==password:
+                            print(f"HELLO AFRI BANK CUSTOMER:{ self.account_holders_names}\nTHE TRANSACTION WAS SUCCESSFUL\nYOUR ACCOUNT BALANCE IS {self.account_balance} #. date of transaction: {year_of_withdrawal}-{month_of_withdrawal}-{day_of_withdrawal}\n")
+                elif self.account_balance<1035 :
+                    self.account_balance=0
+                    print("ERROR INPUT: PLEASE ENSURE THAT AMOUNT YOU WANT TO WITHDRAW IS BELOW THE AMOUNT IN YOUR ACCOUNT BALANCE BY 1035#")
+                    print("restart the process")
+                    break
+        return (self.account_balance,day_of_withdrawal,month_of_withdrawal,year_of_withdrawal)
+    def check_balance(self):
+        print(f"CHECK BALANCE SECTION")
+        print(f"HELLO {self.account_holders_names} with the account number:{self.account_number}")
+        password=0
+        a=0
+        while password!=self.password:
+            password=input("key in your password")
+            if  password!=self.password:
+                    print("WRONG PASSWORD!!!")
+                    a+=1
+                    if a==3:
+                        print("restart the process")
+                        return
+            elif self.password==password:
+                    print(f"THE TRANSACTION WAS SUCCESSFUL\nYOUR ACCOUNT BALANCE IS {self.account_balance} #")
+
+sv=account()
+sv.deposit()
+sv.withdraw()
+sv.check_balance()
